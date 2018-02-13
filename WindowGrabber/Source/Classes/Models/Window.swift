@@ -8,15 +8,15 @@
 
 import Foundation
 
-struct Window {
+public struct Window {
     
-    var name: String = ""
-    let owner: String
-    var fullName: String {
+    public var name: String = ""
+    public let owner: String
+    public var fullName: String {
         return "\(owner) \(name)"
     }
-    var bundleId: String?
-    var browserURL: URL?
+    public var bundleId: String?
+    public var browserURL: URL?
     
     init(with dictionary: NSDictionary) {
         if let tempName = dictionary[kCGWindowName] as? String {
@@ -27,3 +27,4 @@ struct Window {
         owner = dictionary[kCGWindowOwnerName] as? String ?? ""
     }
 }
+

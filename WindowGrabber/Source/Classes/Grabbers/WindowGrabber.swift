@@ -9,14 +9,14 @@
 import Foundation
 import AppKit
 
-class WindowGrabber: BaseGrabber {
+open class WindowGrabber: BaseGrabber {
     
     //MARK: - Config
     
     private let urlGrabber = URLGrabber()
     private var lastUsedApp: NSRunningApplication?
-
-    override init() {
+    
+    public override init() {
         super.init()
         beginMonitoring()
     }
@@ -31,7 +31,7 @@ class WindowGrabber: BaseGrabber {
     
     //MARK: - Public methods
     
-    func getAppWindow(app: NSRunningApplication) throws -> Window {
+    public func getAppWindow(app: NSRunningApplication) throws -> Window {
         do {
             return try getWindowOf(app)
         } catch {
@@ -40,7 +40,7 @@ class WindowGrabber: BaseGrabber {
         }
     }
     
-    func getCurrentAppWindow() throws -> Window {
+    public func getCurrentAppWindow() throws -> Window {
         //check for frontmost app existance
         guard let app = NSWorkspace.shared.frontmostApplication else {
             throw WindowGrabError.frontmostAppNotFound
@@ -97,7 +97,7 @@ class WindowGrabber: BaseGrabber {
 }
 
 //Errors enum
-enum WindowGrabError: Error {
+public enum WindowGrabError: Error {
     
     case windowNotFound
     case frontmostAppNotFound
@@ -119,3 +119,5 @@ enum WindowGrabError: Error {
         return _description
     }
 }
+
+

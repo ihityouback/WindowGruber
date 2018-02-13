@@ -8,21 +8,21 @@
 
 import AppKit
 
-class BaseGrabber {
+open class BaseGrabber {
     
     private let notificationCenter = NSWorkspace.shared.notificationCenter
     private let didActiveNotificationName = NSWorkspace.didActivateApplicationNotification
     
     private var monitoring = false
     
-    func beginMonitoring() {
+    public func beginMonitoring() {
         if monitoring == true { return }
         monitoring = true
         notificationCenter.addObserver(self, selector: #selector(applicationBecomeActive(notification:)), name: didActiveNotificationName, object: nil)
     }
     
     //Finish monitoring switches of apps
-    func finishMonitoring() {
+    public func finishMonitoring() {
         if monitoring == false { return }
         monitoring = false
         notificationCenter.removeObserver(self, name: didActiveNotificationName, object: nil)
@@ -36,3 +36,4 @@ class BaseGrabber {
         finishMonitoring()
     }
 }
+

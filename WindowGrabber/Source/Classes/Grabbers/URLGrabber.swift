@@ -8,7 +8,7 @@
 
 import AppKit
 
-class URLGrabber: BaseGrabber {
+open class URLGrabber: BaseGrabber {
     
     private var lastActiveBrowserBundleId: String?
     var compatibleBrowsersBundldIds = ["com.apple.Safari",
@@ -17,7 +17,7 @@ class URLGrabber: BaseGrabber {
                                        "org.mozilla.firefox",
                                        "ru.yandex.desktop.yandex-browser"]
     
-    init(monitoring: Bool = false) {
+    public init(monitoring: Bool = false) {
         super.init()
         if monitoring {
             beginMonitoring()
@@ -35,10 +35,10 @@ class URLGrabber: BaseGrabber {
         }
     }
     
-    //MARK: Grabber methods
+    //MARK: Public grabber methods
     
     //grab url from last active browser
-    func grabCurrentUrl() throws -> URL? {
+    public func grabCurrentUrl() throws -> URL? {
         
         //check it has last active browser bundleId
         guard let bundleId = lastActiveBrowserBundleId else {
@@ -49,7 +49,7 @@ class URLGrabber: BaseGrabber {
     }
     
     //grab url from bundleId
-    func grabUrlFrom(bundleId: String) throws -> URL? {
+    public func grabUrlFrom(bundleId: String) throws -> URL? {
         return try grabUrl(from: bundleId)
     }
     
@@ -63,7 +63,7 @@ class URLGrabber: BaseGrabber {
         }
         
         //check apple script is available
-        guard let scriptPath = Bundle.main.path(forResource: bundleId, ofType: "scpt") else {
+        guard let scriptPath = Bundle(for: URLGrabber.self).path(forResource: bundleId, ofType: "scpt") else {
             throw URLGrabError.scriptNotFound
         }
         
@@ -112,3 +112,4 @@ enum URLGrabError: Error {
         return _description
     }
 }
+
