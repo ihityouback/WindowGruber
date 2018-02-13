@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
     s.author             = { "Rustam Galiullin" => "ihityouback@gmail.com" }
     s.social_media_url   = "https://www.facebook.com/ihityouback"
     s.platform           = :osx
-    s.source             = { :git => "https://github.com/ihityouback/WindowGruber.git", :tag => "1.0.0" }
+    s.source             = { :git => "https://github.com/ihityouback/WindowGruber.git", :tag => "0.2.0" }
     s.source_files       = "WindowGrabber/Source/**/*.swift"
     s.resources          = "WindowGrabber/Source/**/*.scpt"
     s.osx.framework      = 'AppKit'
